@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from 'src/app/core/services';
 import { PasswordValidate } from 'src/app/validators/password.validator';
 
 @Component({
@@ -7,7 +9,7 @@ import { PasswordValidate } from 'src/app/validators/password.validator';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   get getFirstName(){
     return this.form.get('firstName')
@@ -38,12 +40,17 @@ export class RegisterComponent implements OnInit {
   },{validators: PasswordValidate.passwordMatch})
 
   
+  sub$ = new Subject()
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-
+  ngOnDestroy(): void {
+    this.sub$.next(null)
+    this.sub$.complete()
   }
 
   submit(){
@@ -52,8 +59,12 @@ export class RegisterComponent implements OnInit {
 
     if(this.form.invalid)return;
   
+    this.authService.signUp(this.form.value)
+    .pipe(takeUntil(this.sub$))
+    .subscribe(res=>{
+      console.log(res)
+    })
 
-
-    this.form.reset()
+    // this.form.reset()
   }
 }
