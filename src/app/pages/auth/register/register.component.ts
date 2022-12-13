@@ -24,10 +24,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     return this.form.get('confirmPassword')
   }
 
-  form = new FormGroup({
+  form: FormGroup= new FormGroup({
 
     
-    firstName: new FormControl('',Validators.required),
+    // firstName: new FormControl('',Validators.required),
     email: new FormControl('',[
       Validators.required, 
       Validators.email]),
