@@ -11,7 +11,7 @@ export class RegisterComponent implements OnInit {
   get getFirstName(){
     return this.form.get('firstName')
   }
-  get email(){
+  get getEmail(){
     return this.form.get('email')
   }
   get getPassword(){
@@ -30,26 +30,32 @@ export class RegisterComponent implements OnInit {
       Validators.email]),
     password: new FormControl('',[
       Validators.required,
-      Validators.minLength(6),
+      Validators.minLength(3),
       Validators.maxLength(10)
     ]),
-    confirmPassword: new FormControl('',Validators.required)
-
-
+    confirmPassword: new FormControl('',[Validators.required])
   })
+
+  passwordMatched(){
+    return this.form.get('password')?.value === this.form.get('confirmPassword')?.value
+
+  }
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.form)
 
 
   }
 
   submit(){
-    console.log(this.form.value)
-    this.form.markAllAsTouched();
+    console.log(this.form.value);   
+     this.form.markAllAsTouched();
 
-    // this.form.reset()
+    if(this.form.invalid)return;
+  
+
+
+    this.form.reset()
   }
 }

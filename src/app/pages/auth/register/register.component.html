@@ -14,22 +14,26 @@
             type="text" 
             class="form-control" 
             placeholder="Name"
-            FormControlName="firstName"
+            formControlName="firstName"
             >
           </div>
+          <small class="form-group"  *ngIf="getFirstName!.errors?.['required'] && getFirstName?.touched" class="text-danger">Email is required</small>
+
         </div>
 
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-text"><i class="fa fa-envelope"> </i></span>
             <input 
-            [class.is-invalid]="email?.invalid && email?.touched"
+            [class.is-invalid]="getEmail?.invalid && getEmail?.touched"
             type="email" 
             class="form-control" 
             placeholder="Email Address"
-            FormControlName="email"
+            formControlName="email"
             >
           </div>
+          <small class="form-group"  *ngIf="getEmail!.errors?.['required'] && getEmail?.touched" class="text-danger">Email is required</small>
+          <small *ngIf="getEmail?.errors?.['email'] && getEmail?.touched" class="text-danger">Email form isn't correct </small>
         </div>
 
         <div class="form-group">
@@ -40,10 +44,17 @@
             type="password" 
             class="form-control" 
             placeholder="Password"
-            FormControlName="password"
+            formControlName="password"
             >
             
           </div>
+          <ng-container>
+            <small  *ngIf="getPassword!.errors?.['required'] && getPassword?.touched" class="text-danger">Password is required</small>
+            <small *ngIf="getPassword?.errors?.['minlength'] && getPassword?.touched" class="text-danger">Password must be min 3 character </small>
+            <small *ngIf="getPassword?.errors?.['maxlength'] && getPassword?.touched" class="text-danger">Password must be max 10 character </small>
+          </ng-container>
+         
+
         </div>
 
 
@@ -55,11 +66,11 @@
             type="password" 
             class="form-control" 
             placeholder="Confirm Password"
-            FormControlName="confirmPassword"
+            formControlName="confirmPassword"
             >
           </div>
-          <!-- <small *ngIf="getConfirmPassword!.errors?.['required'] && getConfirmPassword?.touched" class="text-danger">Confirm password is required</small><br>
-          <small *ngIf="getConfirmPassword?.errors?.['confirmPassword'] && getConfirmPassword?.touched">Confirm password must be equal to password</small> -->
+          <small *ngIf="getConfirmPassword!.errors?.['required'] && getConfirmPassword?.touched" class="text-danger">Confirm password is required</small>
+          <small *ngIf="getConfirmPassword?.errors?.['confirmPassword'] && getConfirmPassword?.touched" class="text-danger">Confirm password must be equal to password</small>
           </div>
 
           <button type="submit" class="btn btn-dark btn-block">Submit</button>
