@@ -1,0 +1,71 @@
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="col-md-4 col-md-offset-4" id="login">
+  <section id="inner-wrapper" class="login">
+    <article>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-user "> </i></span>
+            <input 
+            [class.is-invalid]="getFirstName?.invalid && getFirstName?.touched"
+            type="text" 
+            class="form-control" 
+            placeholder="Name"
+            FormControlName="firstName"
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-envelope"> </i></span>
+            <input 
+            [class.is-invalid]="email?.invalid && email?.touched"
+            type="email" 
+            class="form-control" 
+            placeholder="Email Address"
+            FormControlName="email"
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-key"> </i></span>
+            <input 
+            [class.is-invalid]="getPassword?.invalid && getPassword?.touched"
+            type="password" 
+            class="form-control" 
+            placeholder="Password"
+            FormControlName="password"
+            >
+            
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-key"> </i></span>
+            <input 
+            [class.is-invalid]="getConfirmPassword?.invalid && getConfirmPassword?.touched"
+            type="password" 
+            class="form-control" 
+            placeholder="Confirm Password"
+            FormControlName="confirmPassword"
+            >
+          </div>
+          <!-- <small *ngIf="getConfirmPassword!.errors?.['required'] && getConfirmPassword?.touched" class="text-danger">Confirm password is required</small><br>
+          <small *ngIf="getConfirmPassword?.errors?.['confirmPassword'] && getConfirmPassword?.touched">Confirm password must be equal to password</small> -->
+          </div>
+
+          <button type="submit" class="btn btn-dark btn-block">Submit</button>
+          <button type="submit" routerLink="/auth/login" class="btn btn-outline-dark btn-block">Back to login</button>
+      </form>
+    </article>
+  </section>
+</div>
+  {{ form.value | json }}

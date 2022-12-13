@@ -4,6 +4,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { AuthModule } from '../pages/auth/auth.module';
 
 
 
@@ -15,7 +16,8 @@ import { AppRoutingModule } from '../app-routing.module';
   imports: [
     CommonModule,
     RouterOutlet,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule
 
   ],
   exports: [
