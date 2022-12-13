@@ -70,7 +70,7 @@
             >
           </div>
           <small *ngIf="getConfirmPassword!.errors?.['required'] && getConfirmPassword?.touched" class="text-danger">Confirm password is required</small>
-          <small *ngIf="getConfirmPassword?.errors?.['confirmPassword'] && getConfirmPassword?.touched" class="text-danger">Confirm password must be equal to password</small>
+          <small *ngIf="getConfirmPassword?.errors?.['passwordMismatch'] && getConfirmPassword?.touched" class="text-danger">Confirm password must be equal to password</small>
           </div>
 
           <button type="submit" class="btn btn-dark btn-block">Submit</button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PasswordValidate } from 'src/app/validators/password.validator';
 
 @Component({
   selector: 'app-register',
@@ -33,13 +34,10 @@ export class RegisterComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(10)
     ]),
-    confirmPassword: new FormControl('',[Validators.required])
-  })
+    confirmPassword: new FormControl('',Validators.required)
+  },{validators: PasswordValidate.passwordMatch})
 
-  passwordMatched(){
-    return this.form.get('password')?.value === this.form.get('confirmPassword')?.value
-
-  }
+  
 
   constructor() { }
 
