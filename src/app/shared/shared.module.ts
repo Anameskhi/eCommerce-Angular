@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './components/layout/layout.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { AuthModule } from '../pages/auth/auth.module';
@@ -17,7 +17,8 @@ import { AuthModule } from '../pages/auth/auth.module';
     CommonModule,
     RouterOutlet,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    RouterModule
 
   ],
   exports: [

@@ -12,6 +12,8 @@ const routes: Routes = [
       {path: 'auth',loadChildren: ()=> import('./pages/auth/auth.module').then(m=> m.AuthModule)},
       {path: 'products', loadChildren: ()=> import('./pages/products/products.module').then(m=> m.ProductsModule)},
       {path: 'cart', loadChildren: ()=> import('./cart/cart.module').then(m=> m.CartModule)},
+      {path: 'content-manager', loadChildren: ()=> import('./pages/content-manager/content-manager.module').then(m=> m.ContentManagerModule)},
+
     ]
   }
  
