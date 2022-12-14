@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/core/services';
 import { PasswordValidate } from 'src/app/validators/password.validator';
@@ -11,9 +12,9 @@ import { PasswordValidate } from 'src/app/validators/password.validator';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-  get getFirstName(){
-    return this.form.get('firstName')
-  }
+  // get getFirstName(){
+  //   return this.form.get('firstName')
+  // }
   get getEmail(){
     return this.form.get('email')
   }
@@ -23,6 +24,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   get getConfirmPassword(){
     return this.form.get('confirmPassword')
   }
+   
 
   form: FormGroup= new FormGroup({
 
@@ -41,9 +43,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   
   sub$ = new Subject()
+  errorMessage?: string
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {}
@@ -61,8 +65,19 @@ export class RegisterComponent implements OnInit, OnDestroy {
   
     this.authService.signUp(this.form.value)
     .pipe(takeUntil(this.sub$))
-    .subscribe(res=>{
-      console.log(res)
+    .subscribe({
+      next: res => {
+        if(res){
+          this.router.navigate(['/'])
+        }
+      },
+      error: ({error}) => {
+       
+    
+           this.errorMessage = error.error.message
+        
+      }
+
     })
 
     // this.form.reset()

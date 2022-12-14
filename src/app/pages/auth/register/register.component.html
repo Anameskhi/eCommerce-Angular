@@ -2,6 +2,11 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="col-md-4 col-md-offset-4" id="login">
+  <div *ngIf="errorMessage && errorMessage==='EMAIL_EXISTS'" class="alert alert-danger text-center" role="alert">
+    
+    
+  </div>
+ 
   <section id="inner-wrapper" class="login">
     <article>
       <form [formGroup]="form" (ngSubmit)="submit()">

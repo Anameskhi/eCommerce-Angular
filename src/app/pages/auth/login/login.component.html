@@ -1,8 +1,20 @@
 
 
 <div class="col-md-4 col-md-offset-4" id="login">
+  <div *ngIf="errorMessage && errorMessage==='EMAIL_NOT_FOUND'" class="alert alert-danger text-center" role="alert">
+    Email isn't registered, please register
+  </div>
+  <div *ngIf="errorMessage && errorMessage==='INVALID_PASSWORD'" class="alert alert-danger text-center" role="alert">
+    Password isn't correct, please try again
+  </div>
+
+   
+
+ 
   <section id="inner-wrapper" class="login">
+    
     <article>
+     
       <form [formGroup]="form" (ngSubmit)="submit()">
        
         <div class="form-group">

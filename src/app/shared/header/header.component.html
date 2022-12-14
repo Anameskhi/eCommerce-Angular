@@ -12,12 +12,31 @@
         <li class="nav-item">
           <a class="nav-link" style="margin-left: 1em;"routerLink="/products">Products</a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" routerLink="/auth/login">Login</a>
-        </li>
+        
+        
+      
+      
+      
+        <ng-container *ngIf="authService.isAuth; else notAuth">
+
+          <li class="nav-item lim">
+            <a class="nav-link" routerLink="/cart">Cart</a>
+         </li>
+
+         <li class="nav-item lim">
+          <a (click)="logout()" class="nav-link" routerLink="/cart">Log out</a>
+         </li>
+
+        </ng-container>
+       <ng-template #notAuth>
         <li class="nav-item lim">
           <a class="nav-link"  routerLink="/auth/register">Sign up</a>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link" routerLink="/auth/login">Login</a>
+        </li>
+       </ng-template>
+
       </ul>
     </div>
   </div>
