@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { ProductsService } from 'src/app/core/services';
+import { __param } from 'tslib';
 
 @Component({
   selector: 'app-product-add-edit',
   templateUrl: './product-add-edit.component.html',
   styleUrls: ['./product-add-edit.component.scss']
 })
-export class ProductAddEditComponent implements OnInit {
+export class ProductAddEditComponent implements OnInit,OnDestroy {
   
   get getTitle(){
     return this.form.get('title')
@@ -33,19 +35,47 @@ export class ProductAddEditComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
+  sub$ = new Subject()
+  productId: string | undefined
 
   ngOnInit(): void {
+    this.route.params
+    .pipe(takeUntil(this.sub$))
+    .subscribe(params => {
+      if(params['id']){
+        this.productId = params['id']
+        this.productsService.getById(params['id']).subscribe(product => {
+          this.form.patchValue(product)
+        })
+      }
+    })
+  
   }
+  ngOnDestroy(): void {
+    this.sub$.next(null)
+    this.sub$.complete()
+  }
+
   submit(){
     console.log(this.form.value)
     this.form.markAllAsTouched()
     if(this.form.invalid)return;
-
+    
+    if(this.form.value.id){
+      this.productsService.update(this.form.value)
+      .pipe(takeUntil(this.sub$))
+      .subscribe(()=>{
+        this.router.navigate(['content-manager/product-manager'])
+      })
+    } else {
     this.productsService.create(this.form.value)
     .subscribe(()=>{
       this.router.navigate(['content-manager/product-manager'])
     })
   }
+}
+
 }

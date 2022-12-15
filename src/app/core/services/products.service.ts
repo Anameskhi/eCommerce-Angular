@@ -50,4 +50,13 @@ export class ProductsService {
   delete(productId: string): Observable<void>{
     return this.http.delete<void>(`${this.fbDbUrl}/${this.documentName}/${productId}.json`)
   }
+
+  getById(productId: string):Observable<Product>{
+    return this.http.get<Product>(`${this.fbDbUrl}/${this.documentName}/${productId}.json`)
+    .pipe(
+      map((product: Product)=>{
+        return{...product, id:productId}
+      })
+    )
+  }
 }
