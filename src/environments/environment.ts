@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   firebaseAuthUrl: 'https://identitytoolkit.googleapis.com/v1/accounts:',
-  apiKey: 'AIzaSyCxmHkqSmKio5l3ds_oJ4fVGfwsGtaFvkE'
+  apiKey: 'AIzaSyCxmHkqSmKio5l3ds_oJ4fVGfwsGtaFvkE',
+  fbDbUrl: 'https://online-shop-ab98b-default-rtdb.europe-west1.firebasedatabase.app/'
 };
 
 /*
