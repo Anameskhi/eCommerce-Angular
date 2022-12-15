@@ -19,12 +19,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
+    <ng-container *ngIf="products$ | async as products">
+      <tr *ngFor="let product of products, let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{product.title}}</td>
+        <td>{{product.price}}</td>
+        <td>
+            <button (click)="edit(product.id)" routerLink="/content-manager/product/edit/{{product.id}}" class="btn btn-outline-secondary btn-right-spacing"><i class="fas fa-edit errspan"></i></button>
+            <button (click)="delete(product.id)" class="btn btn-outline-danger btn-right-spacing "><i class="fa fa-trash errspan" aria-hidden="true" ></i></button>
+          </td>
+      </tr>
+    </ng-container>
+  
     
   </tbody>
 </table>

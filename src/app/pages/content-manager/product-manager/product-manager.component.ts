@@ -16,6 +16,15 @@ export class ProductManagerComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  edit(id: string){
+  }
 
+  delete(id: string){
+    this.productsService.delete(id)
+    .subscribe(() => {
+      this.products$ = this.productsService.getProducts()
+    })
+  }
 
 }

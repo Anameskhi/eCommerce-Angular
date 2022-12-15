@@ -47,7 +47,7 @@ export class ProductsService {
     )
   }
 
-  delete(product: Product): Observable<void>{
-    return this.http.delete<void>(`${this.fbDbUrl}/${this.documentName}/${product.id}.json`)
+  delete(productId: string): Observable<void>{
+    return this.http.delete<void>(`${this.fbDbUrl}/${this.documentName}/${productId}.json`)
   }
 }
