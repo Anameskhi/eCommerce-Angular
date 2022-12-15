@@ -1,9 +1,6 @@
-<div>
-  <app-product-item [product]="{
-    id: '1',
-    title: 'Product 1',
-    price: 100,
-    description: 'first product',
-    image: 'https://via.placeholder.com/100'
-  }"></app-product-item>
+<ng-container *ngIf="products$ | async as products">
+<div >
+  <app-product-item *ngFor="let product of products" [product]= product
+  ></app-product-item>
 </div>
+</ng-container>

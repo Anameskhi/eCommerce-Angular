@@ -2,6 +2,7 @@
   background-color: #fff;
   font-family: 'Lato', sans-serif;
   text-align: center;
+  
 }
 .product-grid .product-image{ position: relative; }
 .product-grid .product-image a.image{ display: block; }
@@ -46,6 +47,8 @@
   left: 50%;
   z-index: 1;
   transition: all 0.3s ease;
+ 
+
 }
 .product-grid:hover .product-links{
   opacity: 1;
@@ -61,6 +64,7 @@
   height: 40px;
   display: block;
   transition: all 0.3s ease 0s;
+  
 }
 .product-grid .product-links li a:hover{
   color: #fff;
