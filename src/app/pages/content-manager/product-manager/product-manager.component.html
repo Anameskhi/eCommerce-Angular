@@ -1,15 +1,15 @@
-<div style="margin-top: 3px" class="container">
+<div  class="container">
   <div class="d-flex justify-content-between align-items-center">
     <div> <h4>Products</h4> </div>
     <div>
-      <button class="btn btn-dark" routerLink="/content-manager/product/add">Add Product</button>
+      <button class="btn btn-dark" routerLink="/content-manager/products/add">Add Product</button>
     </div>
 
   </div>
 
 
 </div>
-<table style="margin-top: 10px" class="table">
+<table class="table m-3">
   <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
@@ -25,7 +25,7 @@
         <td>{{product.title}}</td>
         <td>{{product.price}}</td>
         <td>
-            <button (click)="edit(product.id)" routerLink="/content-manager/product/edit/{{product.id}}" class="btn btn-outline-secondary btn-right-spacing"><i class="fas fa-edit errspan"></i></button>
+            <button (click)="edit(product.id)" routerLink="/content-manager/products/edit/{{product.id}}" class="btn btn-outline-secondary btn-right-spacing"><i class="fas fa-edit errspan"></i></button>
             <button (click)="delete(product.id)" class="btn btn-outline-danger btn-right-spacing "><i class="fa fa-trash errspan" aria-hidden="true" ></i></button>
           </td>
       </tr>

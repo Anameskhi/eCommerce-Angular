@@ -68,12 +68,12 @@ export class ProductAddEditComponent implements OnInit,OnDestroy {
       this.productsService.update(this.form.value)
       .pipe(takeUntil(this.sub$))
       .subscribe(()=>{
-        this.router.navigate(['content-manager/product-manager'])
+        this.router.navigate(['/content-manager/products'])
       })
     } else {
     this.productsService.create(this.form.value)
     .subscribe(()=>{
-      this.router.navigate(['content-manager/product-manager'])
+      this.router.navigate(['/content-manager/products'])
     })
   }
 }

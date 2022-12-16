@@ -2,21 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ContentManagerRoutingModule } from './content-manager-routing.module';
-import {  ProductManagerComponent } from './product-manager/product-manager.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProductAddEditComponent } from './product-manager/components/product-add-edit/product-add-edit.component';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CategoriesComponent } from './categories/categories.component';
+import { ContentManagerComponent } from './content-manager.component';
 
 
 @NgModule({
   declarations: [
-    ProductManagerComponent,
-    ProductAddEditComponent
+ 
+  
+    CategoriesComponent,
+    ContentManagerComponent
   ],
   imports: [
     CommonModule,
     ContentManagerRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ContentManagerModule { }
